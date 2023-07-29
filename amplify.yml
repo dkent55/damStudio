@@ -3,7 +3,9 @@ frontend:
   phases:
     # IMPORTANT - Please verify your build commands
     build:
-      commands: []
+      commands:
+        - if [ "${AWS_BRANCH}" = "master" ]; then echo "master branch"; npm run build; fi
+        - if [ "${AWS_BRANCH}" = "dev" ]; then echo "dev branch"; npm run build -- --mode dev; fi
   artifacts:
     # IMPORTANT - Please verify your build output directory
     baseDirectory: /
